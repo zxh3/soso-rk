@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MainMenu.module.css'
-import { changeMainMenuActiveItem } from '../redux/action';
+import { changeMainMenuActiveItem } from '../../redux/action';
 import { connect } from 'react-redux';
 
 const MainMenu = ({ activeItem, changeActiveItem }) => {
