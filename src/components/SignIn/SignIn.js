@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './SignIn.module.css';
 import GoogleButton from 'react-google-button'
-import firebase, { db } from '../../firebase';
+import firebase, { auth, db } from '../../firebase';
 
 const Login = () => {
   return (
@@ -13,7 +13,7 @@ const Login = () => {
 
 function googleLogin() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider)
+  auth.signInWithPopup(provider)
     .then(({ user }) => {
       const { uid, email, displayName } = user;
       db.collection('users').doc(uid).set({ 
