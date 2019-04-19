@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Home.module.css';
 import { connect } from 'react-redux';
-import firebase from '../../firebase';
+import { auth } from '../../firebase';
 
 import SignIn from '../SignIn';
 import MainMenu from './MainMenu';
@@ -19,7 +19,7 @@ const afterSignIn = (
         <Icon name="user circle" size="huge" />
         <p>Username</p>
         <button onClick={() => {
-          firebase.auth().signOut();
+          auth().signOut();
         }}>Sign Out</button>
       </div>
     </div>
