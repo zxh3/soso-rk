@@ -7,8 +7,7 @@ import SignIn from '../SignIn';
 import MainMenu from './MainMenu';
 import SearchBar from './SearchBar';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { Icon } from 'semantic-ui-react';
 
 const beforeSignIn = <SignIn></SignIn>;
 
@@ -17,7 +16,7 @@ const afterSignIn = (
     <div className={styles.header}>
       <MainMenu />
       <div className={styles.user}>
-        <FontAwesomeIcon icon={faUser} size="3x" color="#0c4266"/>
+        <Icon name="user circle" size="huge" />
         <p>Username</p>
         <button onClick={() => {
           firebase.auth().signOut();
@@ -25,7 +24,7 @@ const afterSignIn = (
       </div>
     </div>
     <div className={styles.search}>
-      <SearchBar/>
+      <SearchBar />
     </div>
   </div>
 );

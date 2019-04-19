@@ -14,8 +14,8 @@ const MainMenu = ({ activeItem, changeActiveItem }) => {
   return (
     <div className={styles.container}>
       <ul className={styles.menu}>
-      <li className={styles.Soso}>
-          Soso
+        <li className={styles.Soso}>
+            Soso
         </li>
         <li className={itemClassName(activeItem === 'Follow')} onClick={() => changeActiveItem('Follow')}>
           Follow

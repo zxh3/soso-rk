@@ -13,7 +13,6 @@ class SearchBar extends Component {
       <div className="row">
       <Search 
         input={{ icon: 'search', iconPosition: 'left', fluid: true }}
-        
       />
       {/* <Search
             loading={isLoading}

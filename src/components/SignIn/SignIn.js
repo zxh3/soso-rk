@@ -1,10 +1,12 @@
 import React from 'react';
-import firebase from '../../firebase';
+import styles from './SignIn.module.css';
+import GoogleButton from 'react-google-button'
+import firebase, { db } from '../../firebase';
 
 const Login = () => {
   return (
-    <div>
-      <button onClick={googleLogin}>Login</button>
+    <div className={styles.container}>
+      <GoogleButton onClick={googleLogin}>Login</GoogleButton>
     </div>
   );
 }
@@ -12,8 +14,9 @@ const Login = () => {
 function googleLogin() {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
-    .then(result => {
-      console.log(result);
+    .then(({ user }) => {
+      const { uid, email, displayName } = user;
+      db.collection('users').doc(uid).set({ email, displayName }, { merge: true });
     })
     .catch(error => {
       console.error(error);
