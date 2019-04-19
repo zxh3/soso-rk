@@ -16,7 +16,14 @@ function googleLogin() {
   firebase.auth().signInWithPopup(provider)
     .then(({ user }) => {
       const { uid, email, displayName } = user;
-      db.collection('users').doc(uid).set({ email, displayName }, { merge: true });
+      db.collection('users').doc(uid).set({ 
+        email, 
+        displayName,
+        following: [],
+        followers: [],
+        saved: [],
+        posts: []
+      }, { merge: true });
     })
     .catch(error => {
       console.error(error);

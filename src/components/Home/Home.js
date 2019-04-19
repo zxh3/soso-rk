@@ -19,7 +19,7 @@ const afterSignIn = (
         <Icon name="user circle" size="huge" />
         <p>Username</p>
         <button onClick={() => {
-          auth().signOut();
+          auth.signOut();
         }}>Sign Out</button>
       </div>
     </div>
