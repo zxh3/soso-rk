@@ -11,7 +11,7 @@ const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
 ));
 
-auth().onAuthStateChanged((authUser) => {
+auth.onAuthStateChanged((authUser) => {
   store.dispatch(changeAuthState(authUser));
 });
 
