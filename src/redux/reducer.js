@@ -1,16 +1,10 @@
 import { combineReducers } from 'redux';
 
-// dummy reducer
-const appInitState = {
-  mainMenuActiveItem: 'Trending'
-}
+// app reducer
+const appInitState = {}
 
 const appReducer = (state=appInitState, action) => {
   switch (action.type) {
-    case 'CHANGE_MAIN_MENU_ACTIVE_ITEM':
-      return Object.assign({}, state, {
-        mainMenuActiveItem: action.mainMenuActiveItem
-      });
     default:
       return state;
   }
@@ -18,14 +12,16 @@ const appReducer = (state=appInitState, action) => {
 
 // auth reducer
 const authInitState = {
-  authUser: null
+  authUser: null,
+  loading: true
 }
 
 const authReducer = (state=authInitState, action) => {
   switch (action.type) {
     case 'CHANGE_AUTH_STATE':
       return Object.assign({}, state, {
-        authUser: action.authUser
+        authUser: action.authUser,
+        loading: false
       });
     default:
       return state;

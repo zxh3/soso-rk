@@ -1,43 +1,12 @@
-body {
-  background: #ffd89b;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #19547b, #ffd89b);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #19547b, #ffd89b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  color: #0c4266;
-}
-
-.user {
-  height: 110px;
-  padding-top: 30px;
-  float: right;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-button {
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 450;
-  font-size: 15px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #0c4266;
-}
-
 .container {
-  text-align: center;
+
 }
 
-.search {
-  width: 50%;
-  margin: 0 auto;
-  padding-right: 80px;
+.notesGallary {
+}
+
+.addNote {
+  position: fixed;
+  right: 10vw;
+  bottom: 10vh;
 }

@@ -1,44 +1,28 @@
 import React from 'react';
-import styles from './Home.module.css';
+import styles from "./Home.module.css";
 import { connect } from 'react-redux';
-import { auth } from '../../firebase';
+import { Redirect } from 'react-router-dom';
+import { Loader } from 'semantic-ui-react';
+import { AddNote } from '../Note';
 
-import SignIn from '../SignIn';
-import MainMenu from './MainMenu';
-import SearchBar from './SearchBar';
-
-import { Icon } from 'semantic-ui-react';
-
-const beforeSignIn = <SignIn></SignIn>;
-
-const afterSignIn = (
-  <div className={styles.container}>
-    <div className={styles.header}>
-      <MainMenu />
-      <div className={styles.user}>
-        <Icon name="user circle" size="huge" />
-        <p>Username</p>
-        <button onClick={() => {
-          auth.signOut();
-        }}>Sign Out</button>
-      </div>
-    </div>
-    <div className={styles.search}>
-      <SearchBar />
-    </div>
-  </div>
-);
-
-const Home = ({ authUser }) => {
+const Home = ({ authLoading, authUser }) => {
+  if (authLoading) {
+    return <Loader active />
+  } else if (authUser === null) {
+    return <Redirect to='/signin' />
+  }
   return (
-    <div>
-      {authUser ? afterSignIn : beforeSignIn }
+    <div className={styles.container}>
+      <div className={styles.notesGallary}>Notes Gallary</div>
+      <div>Prohibited Tags</div>
+      <div className={styles.addNote}><AddNote /></div>
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({
-  authUser: state.auth.authUser
+  authUser: state.auth.authUser,
+  authLoading: state.auth.loading
 });
 
 export default connect(mapStateToProps)(Home);
