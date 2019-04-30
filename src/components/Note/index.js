@@ -1,5 +1,7 @@
 import AddNote from './AddNote';
+import NoteGallary from './NoteGallary';
 
 export { 
-  AddNote
+  AddNote,
+  NoteGallary
 };

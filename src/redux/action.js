@@ -4,3 +4,10 @@ export const changeAuthState = (authUser) => {
     authUser
   };
 }
+
+export const actionToggleProhibitTag = (tagName) => {
+  return {
+    type: 'TOGGLE_PROHIBIT_TAG',
+    tagName
+  };
+}

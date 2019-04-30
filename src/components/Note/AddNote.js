@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Modal, Popup, Icon, Button, Form, Label } from 'semantic-ui-react';
 import shortid from 'shortid';
 import { toast } from 'react-toastify';
 import firebase, { db, storage } from '../../firebase';
 
-const AddNote = ({ authUser }) => {
+const AddNote = ({ authUser, history }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentTagValue, setCurrentTagValue] = useState('');
 
@@ -13,7 +14,7 @@ const AddNote = ({ authUser }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState([]);
-  const [files, setFiles] = useState(null);
+  const [files, setFiles] = useState([]);
 
   const trigger = (
     <Icon 
@@ -46,6 +47,10 @@ const AddNote = ({ authUser }) => {
       }))
       .then(() => {
         toast.success('Create Note Successfully');
+        setTitle('');
+        setContent('');
+        setTags([]);
+        setFiles([]);
       })
       .catch((error) => console.error(error))
       .finally(() => setModalOpen(false));
@@ -114,4 +119,4 @@ const AddNote = ({ authUser }) => {
   );
 }
 
-export default AddNote;
+export default withRouter(AddNote);

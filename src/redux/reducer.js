@@ -1,10 +1,22 @@
 import { combineReducers } from 'redux';
 
 // app reducer
-const appInitState = {}
+const appInitState = {
+  prohibitTags: []
+}
 
 const appReducer = (state=appInitState, action) => {
   switch (action.type) {
+    case 'TOGGLE_PROHIBIT_TAG':
+      if (!state.prohibitTags.find(tagName => tagName === action.tagName)) {
+        return Object.assign({}, state, {
+          prohibitTags: [action.tagName, ...state.prohibitTags]
+        });
+      } else {
+        return Object.assign({}, state, {
+          prohibitTags: state.prohibitTags.filter(tagName => tagName !== action.tagName)
+        });
+      }
     default:
       return state;
   }

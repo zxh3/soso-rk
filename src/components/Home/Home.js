@@ -3,7 +3,8 @@ import styles from "./Home.module.css";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Loader } from 'semantic-ui-react';
-import { AddNote } from '../Note';
+import { AddNote, NoteGallary } from '../Note';
+import ProhibitTag from './ProhibitTag';
 
 const Home = ({ authLoading, authUser }) => {
   if (authLoading) {
@@ -13,9 +14,15 @@ const Home = ({ authLoading, authUser }) => {
   }
   return (
     <div className={styles.container}>
-      <div className={styles.notesGallary}>Notes Gallary</div>
-      <div>Prohibited Tags</div>
-      <div className={styles.addNote}><AddNote authUser={authUser} /></div>
+      <div className={styles.notesGallary}>
+        <NoteGallary authUser={authUser} />
+      </div>
+      <div className={styles.prohibitTag}>
+        <ProhibitTag />
+      </div>
+      <div className={styles.addNote}>
+        <AddNote authUser={authUser} />
+      </div>
     </div>
   );
 }
