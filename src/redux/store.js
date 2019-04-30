@@ -12,7 +12,6 @@ const store = createStore(rootReducer, composeEnhancers(
 ));
 
 auth.onAuthStateChanged((authUser) => {
-  console.log('!!!');
   store.dispatch(changeAuthState(authUser));
 });
 

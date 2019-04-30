@@ -15,7 +15,7 @@ const Home = ({ authLoading, authUser }) => {
     <div className={styles.container}>
       <div className={styles.notesGallary}>Notes Gallary</div>
       <div>Prohibited Tags</div>
-      <div className={styles.addNote}><AddNote /></div>
+      <div className={styles.addNote}><AddNote authUser={authUser} /></div>
     </div>
   );
 }

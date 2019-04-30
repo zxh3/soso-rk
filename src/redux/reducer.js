@@ -13,7 +13,7 @@ const appReducer = (state=appInitState, action) => {
 // auth reducer
 const authInitState = {
   authUser: null,
-  loading: true
+  loading: true,
 }
 
 const authReducer = (state=authInitState, action) => {
@@ -21,7 +21,7 @@ const authReducer = (state=authInitState, action) => {
     case 'CHANGE_AUTH_STATE':
       return Object.assign({}, state, {
         authUser: action.authUser,
-        loading: false
+        loading: false,
       });
     default:
       return state;
