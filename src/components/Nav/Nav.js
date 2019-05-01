@@ -15,7 +15,7 @@ const Nav = ({ authLoading, authUser, history, location }) => {
     <div className={styles.container}>
 
       <div className={styles.logo} onClick={() => history.push('/')}>
-        Logo
+        Soso
       </div>
 
       <div className={styles.search}>
@@ -25,7 +25,7 @@ const Nav = ({ authLoading, authUser, history, location }) => {
       <div className={styles.menu}>
         { 
           authUser 
-          ? <MenuAfterSignIn />
+          ? <MenuAfterSignIn authUser={authUser} history={history} />
           : <MenuBeforeSignIn history={history} />
         }
       </div>

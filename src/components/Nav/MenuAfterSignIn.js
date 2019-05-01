@@ -1,17 +1,11 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
-import { auth } from '../../firebase';
+import { Icon } from 'semantic-ui-react';
 
-const MenuAfterSignIn = () => {
+const MenuAfterSignIn = ({ authUser, history }) => {
+  const username = authUser.email.split('@')[0];
   return (
-    <div>
-      <Button 
-        primary 
-        size='small'
-        onClick={() => auth.signOut()}
-      >
-        Sign Out
-      </Button>
+    <div style={{ cursor: 'pointer' }}>
+      <Icon name='user outline' size='large' onClick={() => history.push(`/${username}`)} />
     </div>
   );
 }

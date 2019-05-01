@@ -23,7 +23,7 @@ const NotePage = ({ history, match, authUser }) => {
   return (
     <div>
 
-      <div onClick={() => history.push(`/${noteData.author.username}`)}>
+      <div onClick={() => history.push(`/${noteData.author.username}`)} style={{ cursor: 'pointer' }} >
         author: {noteData.author.displayName}
       </div>
 

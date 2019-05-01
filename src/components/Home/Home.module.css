@@ -1,23 +1,20 @@
 .container {
-
+  height: 300vh;
 }
 
 .notesGallary {
-  border: 1px solid grey;
   width: 75vw;
   margin: 3vh auto 0 auto;
 }
 
 .prohibitTag {
-  border: 1px solid grey;
   position: fixed;
-  left: 0;
-  top: 48vh;
+  left: 1vw;
+  top: 30vh;
 }
 
 .addNote {
-  border: 1px solid grey;
   position: fixed;
   right: 5vw;
-  bottom: 10vh;
+  top: 30vh;
 }

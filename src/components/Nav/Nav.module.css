@@ -2,10 +2,12 @@
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   height: 80px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  background: white;
 }
 
 .logo {
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   grid-column: 3 / span 2;
   display: flex;
   justify-content: center;
@@ -14,7 +16,7 @@
 }
 
 .search {
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   grid-column: 7 / span 4;
   display: flex;
   justify-content: center;
@@ -22,7 +24,7 @@
 }
 
 .menu {
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   grid-column: 13 / span 2;
   display: flex;
   justify-content: center;

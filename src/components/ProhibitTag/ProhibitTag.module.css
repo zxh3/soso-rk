@@ -1,0 +1,11 @@
+.tagItem {
+  text-decoration: line-through;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+.tagItem:hover {
+  text-decoration: none;
+  cursor: pointer;
+}

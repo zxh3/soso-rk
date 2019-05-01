@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./NoteGallary.module.css";
 import { connect } from 'react-redux';
-import StackGrid from 'react-stack-grid';
 import { Menu } from 'semantic-ui-react';
 import { useProhibitTags } from '../ProhibitTag';
-import NoteCard from './NoteCard';
+import NotesDisplay from './NotesDisplay';
 import { db } from '../../firebase';
 
 const NoteGallary = ({ authUser }) => {
@@ -41,27 +40,12 @@ const NoteGallary = ({ authUser }) => {
 
   return (
     <div className={styles.container}>
-
-      {/* Menu */}
-      <div className={styles.menu}>
-        <Menu pointing secondary>
-          <Menu.Item name='trending' active={activeMenu === 'trending'} onClick={onClickHandler} />
-          <Menu.Item name='following' active={activeMenu === 'following'} onClick={onClickHandler} />
-          <Menu.Item name='saved' active={activeMenu === 'saved'} onClick={onClickHandler} />
-        </Menu>
-      </div>
-
-      {/* Gallary */}
-      <StackGrid
-        monitorImagesLoaded={true}
-        columnWidth={200}
-        gutterWidth={20}
-        gutterHeight={20}
-        duration={0}
-      >
-        {notes.map(([noteId, note]) => <NoteCard key={noteId} {...note} noteId={noteId} />)}
-      </StackGrid>
-
+      <Menu pointing secondary className={styles.menu}>
+        <Menu.Item name='trending' active={activeMenu === 'trending'} onClick={onClickHandler} style={{ marginLeft: 'auto' }} />
+        <Menu.Item name='following' active={activeMenu === 'following'} onClick={onClickHandler} />
+        <Menu.Item name='saved' active={activeMenu === 'saved'} onClick={onClickHandler} style={{ marginRight: 'auto' }} />
+      </Menu>
+      <NotesDisplay notes={notes} />
     </div>
   );
 }
