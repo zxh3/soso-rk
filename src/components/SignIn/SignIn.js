@@ -32,7 +32,7 @@ function googleLogin(history) {
               email,
               username,
               displayName,
-              photoURL
+              photoURL 
             })
             .then(() => console.log('successfuly update user info'))
             .catch((error) => console.error(error));
