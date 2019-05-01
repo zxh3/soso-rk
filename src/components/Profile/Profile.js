@@ -7,18 +7,22 @@ import useUserData from './useUserData';
 const Profile = ({ authLoading, authUser, match }) => {
   const username = match.params.username;
   const userData = useUserData(username);
+
+  if (userData === null || authLoading) {
+    return <Loader active />
+  }
   
   if (userData === '!exists') {
     return <div>User does not exsits</div>;
   }
 
-  console.log(userData);
-  if (authLoading) {
-    return <Loader active />
-  }
+  const { displayName, photoURL, followers, following, notes } = userData;
+
+  // TODO
+
   return (
     <div>
-      Profile
+      { displayName }
     </div>
   );
 }
