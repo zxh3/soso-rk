@@ -13,7 +13,7 @@
 .prohibitTag {
   border: 1px solid black;
   position: fixed;
-  right: 5vw;
+  left: 0;
   top: 48vh;
 }
 

@@ -5,12 +5,14 @@ import shortid from 'shortid';
 import { toast } from 'react-toastify';
 import firebase, { db, storage } from '../../firebase';
 
-const AddNote = ({ authUser, history }) => {
+const AddNote = ({ authUser }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentTagValue, setCurrentTagValue] = useState('');
+  const [formLoading, setFormLoading] = useState(false);
 
   // notes data
-  const { uid } = authUser;
+  const { uid, displayName, email } = authUser;
+  const username = email.split('@')[0];
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState([]);
@@ -27,6 +29,7 @@ const AddNote = ({ authUser, history }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    setFormLoading(true);
     const storageRef = storage.ref();
     const noteImageRefs = Array.from(Array(files.length), () => storageRef.child(shortid.generate()));
     Promise.all(noteImageRefs.map((noteImageRef, index) => noteImageRef.put(files[index])))
@@ -40,7 +43,7 @@ const AddNote = ({ authUser, history }) => {
         likes: [],
         saves: [],
         date: firebase.firestore.Timestamp.fromDate(new Date()),
-        uid
+        author: { uid, displayName, username }
       }))
       .then((docRef) => db.collection('users').doc(uid).update({
         notes: firebase.firestore.FieldValue.arrayUnion(docRef.id)
@@ -53,7 +56,10 @@ const AddNote = ({ authUser, history }) => {
         setFiles([]);
       })
       .catch((error) => console.error(error))
-      .finally(() => setModalOpen(false));
+      .finally(() => {
+        setModalOpen(false)
+        setFormLoading(false);
+      });
   }
 
   return (
@@ -73,7 +79,7 @@ const AddNote = ({ authUser, history }) => {
         </Modal.Header>
         <Modal.Content>
 
-          <Form onSubmit={onSubmitHandler} id='noteForm'>
+          <Form onSubmit={onSubmitHandler} id='noteForm' loading={formLoading}>
             <Form.Input required label='title' value={title} onChange={(e, { value }) => setTitle(value)} />
             <Form.TextArea required label='content' value={content} onChange={(e, { value }) => setContent(value)} />
             <Form.Input required multiple type='file' accept='image/*' onChange={(e) => setFiles(e.target.files)} />

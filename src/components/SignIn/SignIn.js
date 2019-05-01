@@ -23,16 +23,36 @@ function googleLogin(history) {
   const provider = new firebase.auth.GoogleAuthProvider();
   auth.signInWithPopup(provider)
     .then(({ user }) => {
-      const { uid, email, displayName } = user;
-      db.collection('users').doc(uid).set({ 
-        email,
-        username: email.split('@')[0],
-        displayName,
-        following: [],
-        followers: [],
-        saved: [],
-        notes: []
-      }, { merge: true });
+      const { uid, email, displayName, photoURL } = user;
+      const username = email.split('@')[0];
+      db.collection('users').doc(uid).get()
+        .then((doc) => {
+          if (doc.exists) {
+            db.collection('users').doc(uid).update({
+              email,
+              username,
+              displayName,
+              photoURL
+            })
+            .then(() => console.log('successfuly update user info'))
+            .catch((error) => console.error(error));
+          } else {
+            db.collection('users').doc(uid).set({ 
+              email,
+              username,
+              displayName,
+              photoURL,
+              following: [],
+              followers: [],
+              saved: [],
+              notes: [],
+              prohibitTags: [],
+            })
+            .then(() => console.log('successfully create new user'))
+            .catch((error) => console.error(error));
+          }
+        })
+        .catch((error) => console.error(error))
     })
     .catch(error => {
       console.error(error);

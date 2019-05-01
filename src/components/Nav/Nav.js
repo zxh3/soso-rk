@@ -14,7 +14,7 @@ const Nav = ({ authLoading, authUser, history, location }) => {
   return (
     <div className={styles.container}>
 
-      <div className={styles.logo}>
+      <div className={styles.logo} onClick={() => history.push('/')}>
         Logo
       </div>
 

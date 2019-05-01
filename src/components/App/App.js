@@ -5,6 +5,7 @@ import SignIn from '../SignIn';
 import Nav from '../Nav';
 import Home from '../Home';
 import Profile from '../Profile';
+import { NotePage } from '../Note'
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +18,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/signin' component={SignIn} />
+        <Route path='/n/:noteid' component={NotePage} />
         <Route path='/:username' component={Profile} />
       </Switch>
     </>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Loader } from 'semantic-ui-react';
 import { AddNote, NoteGallary } from '../Note';
-import ProhibitTag from './ProhibitTag';
+import ProhibitTag from '../ProhibitTag';
 
 const Home = ({ authLoading, authUser }) => {
   if (authLoading) {
@@ -18,7 +18,7 @@ const Home = ({ authLoading, authUser }) => {
         <NoteGallary authUser={authUser} />
       </div>
       <div className={styles.prohibitTag}>
-        <ProhibitTag />
+        <ProhibitTag authUser={authUser} />
       </div>
       <div className={styles.addNote}>
         <AddNote authUser={authUser} />
