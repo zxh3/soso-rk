@@ -3,22 +3,20 @@
 }
 
 .notesGallary {
-  border: 1px solid black;
-  height: 85vh;
+  border: 1px solid grey;
   width: 75vw;
-  display: flex;
   margin: 3vh auto 0 auto;
 }
 
 .prohibitTag {
-  border: 1px solid black;
+  border: 1px solid grey;
   position: fixed;
   left: 0;
   top: 48vh;
 }
 
 .addNote {
-  border: 1px solid black;
+  border: 1px solid grey;
   position: fixed;
   right: 5vw;
   bottom: 10vh;

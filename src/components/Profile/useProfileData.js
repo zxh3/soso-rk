@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 
-const useUserData = (username) => {
-  const [userData, setUserData] = useState(null);
-
-  console.log(username);
+const useProfileData = (username) => {
+  const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
     db.collection('users').where('username', '==', username)
       .get()
       .then((querySnapshot) => {
         if (!querySnapshot.size) {
-          setUserData('!exists')
+          setProfileData('!exists')
         } else if (querySnapshot.size === 1) {
-          setUserData(querySnapshot.docs[0].data());
+          setProfileData([querySnapshot.docs[0].id, querySnapshot.docs[0].data()]);
         }
       })
       .catch((error) => console.error(error));
   }, [username]);
 
-  return userData
+  return profileData
 }
 
-export default useUserData;
+export default useProfileData;
