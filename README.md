@@ -7,3 +7,12 @@
 - [ ] Note Page / Sign in page:  add like / save buttons?
 - [x] Search:                    search tags
 - [ ] Add note modal:            prettify
+  
+- [ ] Add some notes
+- [ ] Make a video
+
+## authors
+- Mengdi Gao
+- Siqi Xiong
+- Lanxin Zhang
+- Xiaohua Zhang
