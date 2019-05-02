@@ -5,6 +5,7 @@ import { Menu } from 'semantic-ui-react';
 import { useProhibitTags } from '../ProhibitTag';
 import NotesDisplay from './NotesDisplay';
 import { db } from '../../firebase';
+import _ from 'lodash';
 
 const NoteGallary = ({ authUser }) => {
   const [activeMenu, setActiveMenu] = useState('trending');
@@ -21,7 +22,23 @@ const NoteGallary = ({ authUser }) => {
         });
       return unsubscribe;
     } else if (activeMenu === 'following') {
-      // TODO
+      db.collection('users').doc(authUser.uid)
+        .get()
+        .then((doc) => doc.data().following)
+        .then((followingUserUids) => Promise.all((followingUserUids).map((uid) => {
+          return db.collection('users').doc(uid).get()
+        })))
+        .then((docs) => {
+          const followingNoteIds = _.flatten(docs.map((doc) => doc.data().notes));
+          return Promise.all(followingNoteIds.map((noteId) => {
+            return db.collection('notes').doc(noteId).get()
+          }))
+        })
+        .then((docs) => {
+          const notesData = filterByProhibitTags(docs, prohibitTags);
+          notesData.sort((a, b) => b[1].date.toDate() - a[1].date.toDate());
+          setNotes(notesData);
+        })
       setNotes([]);
     } else if (activeMenu === 'saved') {
       db.collection('users').doc(authUser.uid)
@@ -41,9 +58,23 @@ const NoteGallary = ({ authUser }) => {
   return (
     <div className={styles.container}>
       <Menu pointing secondary className={styles.menu}>
-        <Menu.Item name='trending' active={activeMenu === 'trending'} onClick={onClickHandler} style={{ marginLeft: 'auto' }} />
-        <Menu.Item name='following' active={activeMenu === 'following'} onClick={onClickHandler} />
-        <Menu.Item name='saved' active={activeMenu === 'saved'} onClick={onClickHandler} style={{ marginRight: 'auto' }} />
+        <Menu.Item 
+          name='trending' 
+          active={activeMenu === 'trending'} 
+          onClick={onClickHandler} 
+          style={{ marginLeft: 'auto' }} 
+        />
+        <Menu.Item 
+          name='following' 
+          active={activeMenu === 'following'} 
+          onClick={onClickHandler} 
+        />
+        <Menu.Item 
+          name='saved' 
+          active={activeMenu === 'saved'} 
+          onClick={onClickHandler} 
+          style={{ marginRight: 'auto' }} 
+        />
       </Menu>
       <NotesDisplay notes={notes} />
     </div>

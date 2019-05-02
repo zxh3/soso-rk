@@ -2,5 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
+}
+
+
+.logo {
+  margin-top: 20vh;
+  margin-bottom: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Pacifico', cursive;
+  font-weight: 550;
+  font-size: 80px;
 }

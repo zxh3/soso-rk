@@ -11,3 +11,25 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.profileContainer {
+  position: relative;
+  margin-top: 20px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 10px;
+}
+
+.userInfo > * {
+  margin-bottom: 8px;
+}
+
+.notesDisplay {
+  width: 75vw;
+}

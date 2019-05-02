@@ -3,6 +3,7 @@ import StackGrid from 'react-stack-grid';
 import NoteCard from './NoteCard';
 
 const NotesDisplay = ({ notes }) => {
+  console.log(notes);
   return (
     <StackGrid
       monitorImagesLoaded={true}

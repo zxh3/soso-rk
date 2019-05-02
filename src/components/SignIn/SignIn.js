@@ -13,8 +13,13 @@ const SignIn = ({ authLoading, authUser, history }) => {
     return <Redirect to='/' />
   }
   return (
-    <div className={styles.container}>
-      <GoogleButton onClick={() => googleLogin(history)}>SignIn</GoogleButton>
+    <div>
+      <div className={styles.logo} >
+        Soso
+      </div>
+      <div className={styles.container}>
+        <GoogleButton onClick={() => googleLogin(history)}>SignIn</GoogleButton>
+      </div>
     </div>
   );
 }

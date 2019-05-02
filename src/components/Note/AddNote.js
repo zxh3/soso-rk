@@ -11,7 +11,7 @@ const AddNote = ({ authUser }) => {
   const [formLoading, setFormLoading] = useState(false);
 
   // notes data
-  const { uid, displayName, email } = authUser;
+  const { uid, displayName, email, photoURL } = authUser;
   const username = email.split('@')[0];
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -43,13 +43,13 @@ const AddNote = ({ authUser }) => {
         likes: [],
         saves: [],
         date: firebase.firestore.Timestamp.fromDate(new Date()),
-        author: { uid, displayName, username }
+        author: { uid, displayName, username, photoURL }
       }))
       .then((docRef) => db.collection('users').doc(uid).update({
         notes: firebase.firestore.FieldValue.arrayUnion(docRef.id)
       }))
       .then(() => {
-        toast.success('Create Note Successfully');
+        toast('Create Note Successfully');
         setTitle('');
         setContent('');
         setTags([]);
@@ -84,7 +84,7 @@ const AddNote = ({ authUser }) => {
             <Form.TextArea required label='content' value={content} onChange={(e, { value }) => setContent(value)} />
             <Form.Input required multiple type='file' accept='image/*' onChange={(e) => setFiles(e.target.files)} />
             <Form.Input
-              placeholder='add tags'
+              placeholder='press enter to add tags'
               value={currentTagValue}
               onChange={(e, { value }) => setCurrentTagValue(value)}
               onKeyDown={(e) => {

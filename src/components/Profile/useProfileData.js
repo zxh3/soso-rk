@@ -6,17 +6,14 @@ const useProfileData = (username) => {
 
   useEffect(() => {
     db.collection('users').where('username', '==', username)
-      .get()
-      .then((querySnapshot) => {
+      .onSnapshot((querySnapshot) => {
         if (!querySnapshot.size) {
           setProfileData('!exists')
         } else if (querySnapshot.size === 1) {
           setProfileData([querySnapshot.docs[0].id, querySnapshot.docs[0].data()]);
         }
-      })
-      .catch((error) => console.error(error));
+      });
   }, [username]);
-
   return profileData
 }
 

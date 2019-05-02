@@ -1,7 +1,9 @@
-.container {
 
-}
 
 .image {
   cursor: pointer;
+}
+
+.image:hover {
+  filter: brightness(50%);
 }

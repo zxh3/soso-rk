@@ -7,13 +7,26 @@ import { Card, Image, Icon } from 'semantic-ui-react';
 import firebase, { db } from '../../firebase';
 
 const NoteCard = (props) => {
-  const { authUser, noteId, title, imageUrls, likes, saves, date, history } = props;
+  const { authUser, author, noteId, title, imageUrls, likes, saves, date, history } = props;
   const liked = likes.indexOf(authUser.uid) !== -1;
   const saved = saves.indexOf(authUser.uid) !== -1;
+
   return (
     <div>
+
       <Card>
+        <Card.Content extra>
+          <Image 
+            avatar 
+            src={author.photoURL} 
+            onClick={() => history.push(`/${author.username}`)}
+            style={{ cursor: 'pointer' }}
+          />
+          {author.displayName}
+        </Card.Content>
+
         <Image className={styles.image} src={imageUrls[0]} onClick={() => history.push(`/n/${noteId}`)} />
+        
         <Card.Content>
           <Card.Header>
             {title}
@@ -71,7 +84,7 @@ const NoteCard = (props) => {
             />
             {saves.length} saves
           </div>
-
+        
         </Card.Content>
       </Card>
     </div>

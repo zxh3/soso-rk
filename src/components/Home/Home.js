@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { Loader } from 'semantic-ui-react';
 import { AddNote, NoteGallary } from '../Note';
 import ProhibitTag from '../ProhibitTag';
+import { auth } from '../../firebase';
 
 const Home = ({ authLoading, authUser }) => {
   if (authLoading) {
@@ -14,6 +15,7 @@ const Home = ({ authLoading, authUser }) => {
   }
   return (
     <div className={styles.container}>
+      <button onClick={() => auth.signOut()}>Sign Out</button>
       <div className={styles.notesGallary}>
         <NoteGallary authUser={authUser} />
       </div>

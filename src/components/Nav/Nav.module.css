@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 .container {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
@@ -13,6 +15,9 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  font-family: 'Pacifico', cursive;
+  font-weight: 550;
+  font-size: 35px;
 }
 
 .search {
