@@ -14,7 +14,7 @@ const NoteGallary = ({ authUser }) => {
   useEffect(() => {
     if (activeMenu === 'trending') {
       const unsubscribe = db.collection('notes')
-        .limit(12)
+        .limit(100)
         .onSnapshot((querySnapshot) => {
           const notesData = filterByProhibitTags(querySnapshot.docs, prohibitTags);
           notesData.sort((a, b) => b[1].likes.length - a[1].likes.length);
