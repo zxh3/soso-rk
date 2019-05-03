@@ -1,5 +1,5 @@
 # soso
-- demo: https://soso-test-c57de.firebaseapp.com/
+- demo: https://soso-rk.firebaseapp.com/
 
 ## todos
 - [x] Following Tab
