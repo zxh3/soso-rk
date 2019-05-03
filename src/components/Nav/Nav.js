@@ -30,13 +30,15 @@ const Nav = ({ authLoading, authUser, history, location }) => {
             });
           } else{
             return withTag[tag] = {
+              title: tag,
               name: tag,
               results: [{
                 title: doc.data().title,
                 image: doc.data().imageUrls[0],
                 noteid: doc.id,
                 key: doc.id
-              }]
+              }],
+              key: tag,
             };
           }
         });

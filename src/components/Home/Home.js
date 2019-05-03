@@ -15,7 +15,7 @@ const Home = ({ authLoading, authUser }) => {
   }
   return (
     <div className={styles.container}>
-      <button onClick={() => auth.signOut()}>Sign Out</button>
+      {/* <button onClick={() => auth.signOut()}>Sign Out</button> */}
       <div className={styles.notesGallary}>
         <NoteGallary authUser={authUser} />
       </div>

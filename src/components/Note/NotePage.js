@@ -24,8 +24,6 @@ const NotePage = ({ history, match, authUser }) => {
     return <div>Note does not exists</div>;
   }
 
-  console.log(noteData.imageUrls);
-
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -87,9 +85,6 @@ const NotePage = ({ history, match, authUser }) => {
             // return (<p>{tag}</p>)
           })}
         </div>
-
-
-
 
         {authUser 
           ? (

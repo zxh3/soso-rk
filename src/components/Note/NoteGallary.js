@@ -22,6 +22,7 @@ const NoteGallary = ({ authUser }) => {
         });
       return unsubscribe;
     } else if (activeMenu === 'following') {
+      console.log(authUser.uid);
       db.collection('users').doc(authUser.uid)
         .get()
         .then((doc) => doc.data().following)

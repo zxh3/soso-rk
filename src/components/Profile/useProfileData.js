@@ -10,7 +10,24 @@ const useProfileData = (username) => {
         if (!querySnapshot.size) {
           setProfileData('!exists')
         } else if (querySnapshot.size === 1) {
-          setProfileData([querySnapshot.docs[0].id, querySnapshot.docs[0].data()]);
+          const _profileData = {
+            id: querySnapshot.docs[0].id,
+            data: querySnapshot.docs[0].data(),
+            followers: null,
+            following: null
+          };
+          Promise.all(_profileData.data.followers.map((uid) => db.collection('users').doc(uid).get()))
+            .then((docs) => docs.map((doc) => doc.data()))
+            .then((docsData) => {
+              _profileData.followers = docsData;
+              return Promise.all(_profileData.data.following.map((uid) => db.collection('users').doc(uid).get()));
+            })
+            .then((docs) => docs.map((doc) => doc.data()))
+            .then((docsData) => {
+              _profileData.following = docsData;
+              setProfileData(_profileData);
+            })
+            .catch((error) => console.error(error));
         }
       });
   }, [username]);
