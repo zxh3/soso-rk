@@ -3,10 +3,9 @@
 
 ## todos
 - [x] Following Tab
-- [ ] Profile Page:              followers/following should be clickable; when clicked, a modal should pop up
-- [ ] Note Page / Sign in page:  add like / save buttons?
+- [x] Profile Page:              followers/following should be clickable; when clicked, a modal should pop up
 - [x] Search:                    search tags
-- [ ] AddNote modal:             prettify
+- [x] AddNote modal:             prettify
   
 - [ ] Add some notes
 - [ ] Make a video
