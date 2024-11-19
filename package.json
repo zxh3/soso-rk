@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^5.9.4",
+    "firebase": "^10.9.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "npm": "^6.9.0",
